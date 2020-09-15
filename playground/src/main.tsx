@@ -1,32 +1,23 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
 import React from 'react'
-import { CastButton } from 'react-native-google-cast'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
+import { CastButton } from '../../lib'
 import Formats from './screens/Formats'
 import Home from './screens/Home'
 
-const Stack = createStackNavigator()
+const AppNavigator = createStackNavigator(
+  {
+    Home,
+    Formats,
+  },
+  {
+    defaultNavigationOptions: {
+      headerRight: (
+        <CastButton
+          style={{ tintColor: 'black', width: 24, height: 24, marginRight: 10 }}
+        />
+      ),
+    },
+  }
+)
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerRight: () => (
-            <CastButton
-              style={{
-                tintColor: 'black',
-                width: 24,
-                height: 24,
-                marginRight: 10,
-              }}
-            />
-          ),
-        }}
-      >
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Formats" component={Formats} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
-}
+export default createAppContainer(AppNavigator)

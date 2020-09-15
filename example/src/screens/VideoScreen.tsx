@@ -10,10 +10,7 @@ import {
 } from 'react-native'
 import { Navigation, Options } from 'react-native-navigation'
 import RNVideo from 'react-native-video'
-import GoogleCast, {
-  CastState,
-  RemoteMediaClient,
-} from 'react-native-google-cast'
+import GoogleCast, { CastState, RemoteMediaClient } from '../../../lib'
 import Video from '../Video'
 
 export interface Props extends ActionSheetProps {
@@ -26,7 +23,7 @@ interface State {
 }
 
 export default class VideoScreen extends React.Component<Props> {
-  static options(): Options {
+  static options(passProps): Options {
     return {
       topBar: {
         title: {
@@ -45,7 +42,7 @@ export default class VideoScreen extends React.Component<Props> {
     }
   }
 
-  castStateListener?: EmitterSubscription
+  castStateListener: EmitterSubscription
   state: State = {}
 
   componentDidMount() {
@@ -82,7 +79,7 @@ export default class VideoScreen extends React.Component<Props> {
   }
 
   componentWillUnmount() {
-    this.castStateListener?.remove()
+    this.castStateListener.remove()
   }
 
   cast(video: Props['video']) {
@@ -122,10 +119,12 @@ export default class VideoScreen extends React.Component<Props> {
     if (!this.state.started) {
       return (
         <TouchableOpacity onPress={() => this.setState({ started: true })}>
-          <Image
-            style={styles.video}
-            source={{ uri: this.props.video.imageUrl }}
-          />
+          <Navigation.Element elementId="videoPreview">
+            <Image
+              style={styles.video}
+              source={{ uri: this.props.video.imageUrl }}
+            />
+          </Navigation.Element>
         </TouchableOpacity>
       )
     }
@@ -148,7 +147,7 @@ export default class VideoScreen extends React.Component<Props> {
     )
   }
 
-  navigationButtonPressed({ buttonId }: { buttonId: string }) {
+  navigationButtonPressed({ buttonId }) {
     if (buttonId === 'queue') {
       Navigation.push(this.props.componentId, {
         component: { name: 'castvideos.Queue' },

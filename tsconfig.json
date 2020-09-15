@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
     "jsx": "react",
-    "lib": ["esnext"],
-    "module": "esnext",
+    "module": "es6",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
+    "noEmit": false,
+    "noEmitHelpers": true,
     "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
-      "react-native-google-cast": ["./src/index"]
+      "react-native-google-cast": ["./lib"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
-  }
+    "sourceMap": true,
+    "target": "es6",
+    "typeRoots": ["./node_modules/@types", "lib"]
+  },
+  "exclude": ["./node_modules", "**/__tests__/*"],
+  "include": ["./lib"]
 }
