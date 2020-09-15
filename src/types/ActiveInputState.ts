@@ -1,7 +1,1 @@
-enum ActiveInputState {
-  UNKNOWN = 'unknown',
-  INACTIVE = 'inactive',
-  ACTIVE = 'active',
-}
-
-export default ActiveInputState
+export type ActiveInputState = 'unknown' | 'inactive' | 'active'

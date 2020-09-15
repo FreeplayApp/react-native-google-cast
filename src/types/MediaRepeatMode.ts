@@ -1,8 +1,1 @@
-enum MediaRepeatMode {
-  ALL = 'all',
-  ALLANDSHUFFLE = 'allAndShuffle',
-  SINGLE = 'single',
-  OFF = 'off',
-}
-
-export default MediaRepeatMode
+export type MediaRepeatMode = 'all' | 'allAndShuffle' | 'single' | 'off'
